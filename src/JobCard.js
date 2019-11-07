@@ -1,16 +1,26 @@
 import React from 'react';
 import {
   Card,
-  CardContent
+  CardContent,
+  Typography,
+  Container
 } from '@material-ui/core';
 
 
 export default function JobCard(props) {
+
   return (
-    <Card>
-      <CardContent>
-        
-      </CardContent>
-    </Card>
+    <React.Fragment>
+      <Container maxWidth='xs'>
+          <Card>
+            <CardContent>
+              <Typography variant='body2'>
+                {props.card.content}
+              </Typography>
+            </CardContent>
+          </Card>
+      </Container>
+      <br/>
+    </React.Fragment>
   )
 }

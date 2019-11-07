@@ -2,7 +2,6 @@ import React from 'react';
 import { Container, Grid } from '@material-ui/core';
 import List from './List'
 
-
 export default class App extends React.Component {
 
   DOMAIN = "http://localhost:3000"
@@ -10,7 +9,7 @@ export default class App extends React.Component {
   state = {lists: []}
 
   componentDidMount() {
-
+    console.log(this.props.theme);
     fetch(`${this.DOMAIN}/lists?_embed=cards`)
     .then(res => res.json())
     .then(data => {
@@ -20,7 +19,7 @@ export default class App extends React.Component {
   }
 
   makeLists() {
-    return(
+    return (
       this.state.lists.map(l => {
         return (
           <List
@@ -35,9 +34,9 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <Container maxWidth="md">
+      <Container >
         <Grid container spacing={3}>
-        {this.makeLists()}
+          {this.makeLists()}
         </Grid>
       </Container>
     );
