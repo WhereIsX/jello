@@ -3,16 +3,17 @@ import {
   Grid,
   Typography,
   Paper,
-  Button
+  Button,
+  TextField
 } from '@material-ui/core';
 import JobCard from './JobCard'
-
+import NewCard from './NewCard'
 
 export default class List extends React.Component {
 
-  makeCards() {
-    console.log(this.props.theme);
+  state = {new: false}
 
+  makeCards() {
     return (
       this.props.cards.map(card => {
           return (
@@ -25,8 +26,17 @@ export default class List extends React.Component {
     )
   }
 
+  makeNewCard() {
+    if (this.state.new === true) {
+      return ( <NewCard listId={this.props.listId} submitNewCard={this.props.submitNewCard}/> )
+    }
+  }
+
   handleAddCardClick() {
-    console.log('hello')
+    // console.log(this)
+    // remember that `this` refers to the context it was called in,
+    // use anonymous function to 'bind' this to context
+    this.setState({new: true})
   }
 
   render() {
@@ -40,8 +50,10 @@ export default class List extends React.Component {
 
             {this.makeCards()}
 
+            {this.makeNewCard()}
+
             <div align='center'>
-              <Button color='primary' onClick={this.handleAddCardClick}>
+              <Button color='primary' onClick={() => this.handleAddCardClick()}>
                 Add Card
               </Button>
             </div>
